@@ -1,0 +1,23 @@
+<h3>Add a Product</h3>
+<%= form_with model: @product do |f| %>
+    <%= f.label :name %>
+    <%= f.text_field :name %><br>
+
+    <%= f.label :manufacturer %>
+    <%= f.text_field :manufacturer %>
+    <!-- hidden field for manufacturer_id -->
+
+    <%= f.label :price %>
+    <%= f.number_field :price %><br>
+
+    <%= f.label :category %>
+    <%= f.text_field :category %><br>
+
+    <%= f.label :body_part %>
+    <%= f.text_field :body_part %><br>
+
+    <!-- hidden field for user_id -->
+
+    <%= f.submit "Add Product" %>
+
+    <% end %>
