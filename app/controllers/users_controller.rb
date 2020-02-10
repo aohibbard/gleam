@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-    before_action :require_logged_in
+    before_action :require_logged_in, only: [:show]
     #   skip_before_action :require_login, only: [:index]
     # refer to application helper
 
@@ -13,9 +13,9 @@ class UsersController < ApplicationController
     end 
 
     def create
-        @user = User.new(user_params)
+        @user = User.create(user_params)
         if @user.save
-            session[:user_id] = @user.user_id
+            session[:user_id] = @user.id
             redirect_to user_path(@user)
         else
           render :new
@@ -23,10 +23,10 @@ class UsersController < ApplicationController
     end 
 
     def show
-        @user = User.find_by(params[:id])
+        @user = User.find_by(id: params[:id])
     end 
 
-    private 
+    private
 
     def user_params
         params.require(:user).permit(:name, :username, :email, :password)

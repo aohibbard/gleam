@@ -1,0 +1,14 @@
+<%= @manufacturer.name %>
+<%= @manufacturer.year_est %>
+<% @manufacturer.products.each do |product| %>
+    <ul>
+    <li><%= link_to product.name, product_path(product) %> - Rating:
+        <% if !product.reviews.empty? %>
+        <%= product.avg_rating %>
+        <% else %>
+            No Rating
+        <% end %>
+        <br>
+    <%= product.category.name %></li> 
+    </ul><br>
+    <% end %>

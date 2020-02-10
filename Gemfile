@@ -7,6 +7,7 @@ gem 'dotenv-rails'
 # gem 'omniauth'
 # other omniauth gem for specific login route
 gem 'pry'
+# gem 'httyparty'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.0.2', '>= 6.0.2.1'

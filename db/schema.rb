@@ -10,10 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_07_024216) do
+ActiveRecord::Schema.define(version: 2020_02_09_202057) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "categories", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "follows", force: :cascade do |t|
+    t.integer "follower_id"
+    t.integer "following_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "manufacturers", force: :cascade do |t|
     t.string "name"
@@ -25,14 +38,19 @@ ActiveRecord::Schema.define(version: 2020_02_07_024216) do
 
   create_table "products", force: :cascade do |t|
     t.string "name"
-    t.integer "manufacturer_id"
-    t.bigint "user_id", null: false
-    t.integer "price"
-    t.string "category"
-    t.string "body_part"
+    t.integer "manufacturer_id", null: false
+    t.float "price"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["user_id"], name: "index_products_on_user_id"
+    t.bigint "category_id", null: false
+    t.index ["category_id"], name: "index_products_on_category_id"
+  end
+
+  create_table "products_users", id: false, force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "product_id", null: false
+    t.index ["product_id"], name: "index_products_users_on_product_id"
+    t.index ["user_id"], name: "index_products_users_on_user_id"
   end
 
   create_table "reviews", force: :cascade do |t|
@@ -55,7 +73,7 @@ ActiveRecord::Schema.define(version: 2020_02_07_024216) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  add_foreign_key "products", "users"
+  add_foreign_key "products", "categories"
   add_foreign_key "reviews", "products"
   add_foreign_key "reviews", "users"
 end

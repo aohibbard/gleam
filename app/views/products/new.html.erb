@@ -1,0 +1,27 @@
+<%= form_with(model: @product) do |f| %>
+    
+    <%= f.label :name %>
+    <%= f.text_field :name %><br>
+
+    <%= f.label :price %>
+    <%= f.number_field :price, value: @product.price ? '%.2f' % @product.price : nil, min: 0, step: 0.01 %><br>
+
+    <%= f.label :category_id %>
+    <%= f.collection_select :category_id, Category.all.sort_by{|c| c.name}, :id, :name, prompt: true  %>
+    <br>
+
+
+        <% if @manufacturer.nil? %>
+            <%= f.label :manufacturer_id %>
+            <%= f.collection_select :manufacturer_id, Manufacturer.all.sort_by{|m| m.name}, :id, :name, prompt: true  %>
+            <h3>Or Create a New Manufacturer</h3>
+            <%= f.fields_for :manufacturer do |m_field| %>
+                <%= m_field.label :name %>
+                <%= m_field.text_field :name %><br>
+                <% end %>
+            <% else %>
+                <%= f.hidden_field :manufacturer_id %>
+            <% end %>
+
+    <%= f.submit "Create" %>
+    <% end %>
