@@ -1,11 +1,15 @@
 class ProductsController < ApplicationController
-    # before_action :logged_in?, only: [:new, :create, :edit, :update]
+    before_action :require_log_in, only: [:new, :create, :edit, :update]
 
     def new
-        @product = Product.new
-        @product.build_manufacturer #create empty manufacturer
-        # @product.build_bodies
-        @product.category.try(:id)
+        # nested
+        if params[:manufacturer_id] && @manufacturer = Manufacturer.find_by(id: params[:manufacturer_id])
+            @product = @manufacturer.products.build 
+        else 
+            @product = Product.new
+            @product.build_manufacturer #create empty manufacturer
+            @product.category.try(:id)
+        end 
     end 
 
     def create
@@ -40,7 +44,8 @@ class ProductsController < ApplicationController
 
     def update 
         product_helper
-        product_helper.update(product_params)
+        @product.update(product_params)
+        redirect_to @product 
     end 
 
     private 

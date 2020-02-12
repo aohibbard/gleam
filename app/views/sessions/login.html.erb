@@ -1,4 +1,5 @@
 <h3>Log In</h3>
+<div>
 <%= form_with do |f| %>
 
     <%= f.label :email %>
@@ -10,3 +11,6 @@
     <%= f.submit "Log In" %>
 
     <% end %>
+</div>
+
+    <%= link_to 'Log In with Github', '/auth/github/callback', method: :post %>

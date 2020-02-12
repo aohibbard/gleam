@@ -2,6 +2,7 @@ module ApplicationHelper
 
     def logged_in?
       !!session[:user_id]
+      # or !!current_user
     end
     
     def current_user
@@ -9,8 +10,10 @@ module ApplicationHelper
     end
 
       # reconsider action 
-    def require_logged_in
-      redirect_to controller: 'sessions', action: 'new' unless current_user
+    def require_log_in
+      if !logged_in? 
+        redirect_to '/'
+      end 
     end
       
 end

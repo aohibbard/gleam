@@ -3,15 +3,19 @@ Average Rating: <%= @product.avg_rating %><br>
 
 </br>
 <% @product.reviews.each do |r| %>
-    <%= link_to r.user.name, user_path(r.user) %> says:
+    <%= link_to r.user.username, user_path(r.user) %> says:
     <%= r.comment %><br>
     Rating: <%= r.rating %><br>
     <%= r.updated_at %>
     <br></br>
+<% end %>
+
+<% if current_user %>
+    <%= link_to "My Page", user_path(current_user) %><br>
+    <%= link_to "Edit Product", edit_product_path(@product) %><br>
+    <% if !@product.reviews.find_by(user_id: current_user.id) %>
+        <%= link_to "Add Review", new_product_review_path(@product) %>
+    <% else %>
+        <%= link_to "Edit My Review", edit_product_review_path(@product) %>
     <% end %>
-<%= link_to "My Page", user_path(current_user) %><br>
-<% if @product.reviews.include?(current_user.id) %>
-<%= link_to "Add Review", new_product_review_path(@product) %>
-<% else %>
-<%= link_to "Edit My Review", edit_product_review_path(@product) %>
 <% end %>

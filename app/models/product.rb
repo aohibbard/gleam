@@ -16,8 +16,12 @@ class Product < ApplicationRecord
   # end 
 
   def avg_rating
-    sum = self.reviews.map {|review| review['rating']}.inject(0, :+)
-    avg = sum / self.reviews.count
+    if self.reviews.count < 1 
+      "No reviews"
+    else 
+      sum = self.reviews.map {|review| review['rating']}.inject(0, :+)
+      avg = sum / self.reviews.count
+    end 
   end 
 
   # def ewg_api

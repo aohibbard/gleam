@@ -1,5 +1,8 @@
-<%= @manufacturer.name %>
-<%= @manufacturer.year_est %>
+<%= @manufacturer.name %><br>
+<%= @manufacturer.year_est %><br>
+
+<%= link_to "Add New #{@manufacturer.name} Product", new_manufacturer_product_path(@manufacturer) %>
+
 <% @manufacturer.products.each do |product| %>
     <ul>
     <li><%= link_to product.name, product_path(product) %> - Rating:
