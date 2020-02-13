@@ -1,14 +1,26 @@
-Welcome <%= @user.name %>
+<div>
+Welcome <%= current_user.name %><br>
+<%= @user.name %>'s page
+</div>
 
+Following: <%= @user.followings.count %>
+Followers: <%= @user.followers.size %>
+
+<div>
+<%= render 'follows/follow-btn', {object: @user } %>
+</div>
+
+<div>
 <% @user.products.each do |product| %>
     <ul>
-    <li><b><%= link_to product.name, product_path(product) %></b> by 
-    <%= link_to product.manufacturer.name, manufacturer_path(product.manufacturer_id) %><br></li>
-    <%= product.category.name %><br>
-    <%= number_to_currency(product.price) %></li>
+        <li><b><%= link_to product.name, product_path(product) %></b> by 
+        <%= link_to product.manufacturer.name, manufacturer_path(product.manufacturer_id) %><br></li>
+        <%= product.category.name %><br>
+        <%= number_to_currency(product.price) %></li>
     </ul>
     <br>
     <% end %>
+</div>
 
 <br><%= link_to "Add Product", new_product_path %>    
 <%= render 'sessions/logout' %>

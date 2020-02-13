@@ -1,0 +1,13 @@
+<div>
+    <%= form_with(url: "/manufacturers/search", method: "post") do %>
+        <%= label_tag(:q, "Find a Brand:") %>
+        <%= text_field_tag(:q) %>
+        <%= submit_tag("Search") %>
+    <% end %>
+</div>
+
+<div>
+        <% @manufacturers.all do |m| %>
+            <%= link_to m.name, manufacturer_path(m) %>
+        <% end %>
+</div>

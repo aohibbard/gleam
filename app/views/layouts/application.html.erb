@@ -4,12 +4,24 @@
     <title>Gleam</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    <%= favicon_link_tag asset_path('favicon.ico') %>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
+  <div class="navbar-nav">
+    <div class="navbar-text">
+      <p>
+        <b><a href="/">GLEAM</a></b>
+        <% if logged_in? %>
+        <a href="/products/new">Add Product</a>
+        <%= link_to "My Page", user_path(current_user) %>
+        <%= link_to "Log Out", '/logout', method: :post %>
+        <% end %>
+      </p>
+    </div>
+  </div>
     <%= yield %>
   </body>
 </html>

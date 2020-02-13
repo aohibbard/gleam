@@ -3,7 +3,7 @@ Average Rating: <%= @product.avg_rating %><br>
 
 </br>
 <% @product.reviews.each do |r| %>
-    <%= link_to r.user.username, user_path(r.user) %> says:
+    <%= link_to r.user.name, user_path(r.user) %> says:
     <%= r.comment %><br>
     Rating: <%= r.rating %><br>
     <%= r.updated_at %>

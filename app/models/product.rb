@@ -1,13 +1,14 @@
 class Product < ApplicationRecord
   belongs_to :manufacturer
   belongs_to :category
-  # belongs_to :bodies
   has_and_belongs_to_many :users
   has_many :reviews
 
   accepts_nested_attributes_for :manufacturer, reject_if: proc {|attr| attr['name'].blank? }
-  # accepts_nested_attributes_for :bodies
   accepts_nested_attributes_for :category 
+
+  # scope :most_recent, ->(product_id) {order("created_at desc").limit(5)}
+
 
   # def manufacturer_attributes=(attributes)
   #   if !attributes['name'].blank?

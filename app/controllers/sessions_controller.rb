@@ -26,11 +26,10 @@ class SessionsController < ApplicationController
     end 
 
     def omniauth 
-        binding.pry
-        @user = User.find_or_create_by_uid(auth[:uid]) do |u|
+        # binding.pry
+        @user = User.find_or_create_by(uid: auth[:uid]) do |u|
             u.name = auth['info']['name']
             u.email = auth['info']['email']
-            u.username = auth['info']['nickname']
             u.password = SecureRandom.hex
         end 
         session[:user_id] = @user.id

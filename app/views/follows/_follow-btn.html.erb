@@ -1,0 +1,11 @@
+<% if @user != current_user %>
+    <% if current_user.followings.include?(@user) %>
+        <div class="follow-button">
+        <%= button_to "Unfollow", unfollow_path(@user) %>
+        </div>
+    <% else %>
+        <div class="follow-button">
+        <%= button_to "Follow", create_follow_path(@user) %>
+        </div>
+    <%end %>
+<% end %>
