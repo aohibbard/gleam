@@ -33,5 +33,15 @@ class FollowsController < ApplicationController
         end 
     end 
 
+    def followers 
+        params[:user_id] && @user = User.find_by_id(params[:user_id])
+        @follows = @user.followers 
+    end 
+
+    def following 
+        params[:user_id] && @user = User.find_by_id(params[:user_id])
+        @follows = @user.followings 
+    end 
+
 
 end

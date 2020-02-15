@@ -1,0 +1,11 @@
+<%= link_to @user.name, user_path(@user) %> follows:
+
+<% if @follows.size == 0 %>
+    <p>There are no followers</p>
+<% else %>
+    <% @follows.each do |f| %>
+        <ul>
+        <li><%= link_to f.name, user_path(f)%></li>
+        </ul>
+    <% end %>
+<% end %>

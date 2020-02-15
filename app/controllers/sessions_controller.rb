@@ -14,7 +14,7 @@ class SessionsController < ApplicationController
             session[:user_id] = @user.id
             redirect_to user_path(@user)
         else 
-            redirect to '/login'
+            redirect_to '/login'
         end 
     end 
     
@@ -26,7 +26,7 @@ class SessionsController < ApplicationController
     end 
 
     def omniauth 
-        # binding.pry
+        binding.pry
         @user = User.find_or_create_by(uid: auth[:uid]) do |u|
             u.name = auth['info']['name']
             u.email = auth['info']['email']

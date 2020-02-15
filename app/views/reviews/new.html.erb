@@ -1,9 +1,9 @@
-<%= render 'layouts/errors', {object: @review } %>
+<%= render partial: 'layouts/errors', locals: {object: @review } %>
 
 
-<h3>Review <%=@product.name %> Product</h3>
-<%= @product.name %>
-<%= form_with models: @review do |f| %>
+<div id="formContent">
+<h4>Review <%=@product.name %></h4>
+<%= form_with(model: @review, url: [@product, @review], local: true) do |f| %>
     <%= f.hidden_field :user_id, value: current_user.id %>
     <%= f.hidden_field :product_id, value: @product.id %>
 
@@ -11,6 +11,7 @@
     <%= f.number_field :rating %><br>
 
     <%= f.label :comment %>
-    <%= f.text_area :comment %>
+    <%= f.text_area :comment %><br>
     <%= f.submit "Add Review" %>
 <% end %>
+</div>

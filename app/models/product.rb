@@ -5,28 +5,22 @@ class Product < ApplicationRecord
   has_many :reviews
 
   accepts_nested_attributes_for :manufacturer, reject_if: proc {|attr| attr['name'].blank? }
-  accepts_nested_attributes_for :category 
+  accepts_nested_attributes_for :reviews 
 
-  # scope :most_recent, ->(product_id) {order("created_at desc").limit(5)}
-
-
-  # def manufacturer_attributes=(attributes)
-  #   if !attributes['name'].blank?
-  #     self.category = Manufacturer.find_or_create_by(attributes)
-  #   end 
-  # end 
+  scope :alphabetize, -> (m_id){where(manufacturer_id: m_id).order('name asc')}
 
   def avg_rating
     if self.reviews.count < 1 
       "No reviews"
     else 
       sum = self.reviews.map {|review| review['rating']}.inject(0, :+)
-      avg = sum / self.reviews.count
+      avg = (sum / self.reviews.count).round(2)
     end 
   end 
 
   # def ewg_api
   #   BASE_URI = "https://www.ewg.org/skindeep"
+  #   Sephora?
   # end 
 
 end

@@ -14,7 +14,38 @@
  *= require_self
  */
 
+ @import "bootstrap";
 
+/* BAISC PAGE */
+
+body {
+  margin: 0 auto;
+  max-width: 80em;
+  padding: 2px;
+}
+
+.landing{
+  margin: auto;
+  width: 60%;
+  border: 3px solid ;
+  padding: 20px;
+  background-color: #D1C7F0;
+  -webkit-box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
+  border-style: none;
+
+}
+
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: white;
+  color: white;
+  text-align: center;
+}
+
+ /* FOLLOW */
  .follow-button {
     text-transform: uppercase;
     border-color: #4090db;
@@ -38,4 +69,145 @@
       color: white;
     }
   }
- @import "bootstrap";
+
+  /* NAVBAR */
+
+  .navbar{
+    position: sticky;
+    top: 0;
+    width: 100%;
+    height: 5%;
+    position: fixed; 
+    z-index: 99999;
+    margin-bottom: 20px;
+    background-color: #BC8AEE;
+  }
+
+  .navbar > ul{
+    background-color: #BC8AEE;
+  }
+
+  /* FORMS */
+
+  #formContent {
+    -webkit-border-radius: 10px 10px 10px 10px;
+    border-radius: 10px 10px 10px 10px;
+    background: #fff;
+    padding: 30px;
+    width: 90%;
+    max-width: 450px;
+    padding: 0px;
+    -webkit-box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
+    box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
+    text-align: center;
+    position: relative; 
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .wrapper {
+    display: flex;
+    align-items: center;
+    flex-direction: column; 
+    justify-content: center;
+    width: 100%;
+    min-height: 100%;
+    padding: 20px;
+  }
+
+  /* ERRORS */
+  .field_with_errors {
+    padding: 2px;
+    background-color: greenyellow;
+    display: table;
+  }
+
+  #error_explanation {
+    color: greenyellow;
+  }
+  
+  ul {
+      list-style: none;
+      margin: 0 0 18px 0;
+    }
+
+  /* SHOW PAGES */
+
+  /* PRODUCT GRIDS*/
+
+  .product-column {
+    float: left;
+    width: 24%;
+    padding: 10px;
+  }
+  
+  /* Clear floats after the columns */
+  .product-row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+
+  /* other stuff */
+
+  .media{
+      /*box-shadow:0px 0px 4px -2px #000;*/
+      margin: 20px 0;
+      padding:30px;
+  }
+  .dp{
+      border:10px solid #eee;
+      transition: all 0.2s ease-in-out;
+  }
+  .dp:hover{
+      border:2px solid #eee;
+      transform:rotate(360deg);
+      -ms-transform:rotate(360deg);  
+      -webkit-transform:rotate(360deg);  
+      /*-webkit-font-smoothing:antialiased;*/
+  }
+
+  /* COMMENTS/ REVIEWs */
+
+.comment-box-container {
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+.comment-box {
+  margin-top: 30px !important;
+}
+
+.comment-box .media-left {
+  padding-right: 10px;
+  width: 65px;
+}
+.comment-box .media-body p {
+  border: 1px solid #ddd;
+  padding: 10px;
+}
+.comment-box .media-body .media p {
+  margin-bottom: 0;
+}
+
+.comment-box .media-heading {
+  background-color: #f5f5f5;
+  border: 1px solid #ddd;
+  padding: 7px 10px;
+  position: relative;
+  margin-bottom: -1px;
+}
+.comment-box .media-heading:before {
+  content: "";
+  width: 12px;
+  height: 12px;
+  background-color: #f5f5f5;
+  border: 1px solid #ddd;
+  border-width: 1px 0 0 1px;
+  -webkit-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+  position: absolute;
+  top: 10px;
+  left: -6px;
+}

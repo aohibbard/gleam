@@ -36,6 +36,7 @@ class ProductsController < ApplicationController
 
     def show
         product_helper
+        # @reviews = Review.most_recent(@product.id)
     end 
 
     def edit 

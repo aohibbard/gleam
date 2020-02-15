@@ -8,6 +8,7 @@
 # Name: Gwenyth Paltrow, Username: guineapig, email: gp@goop.com, password: uncoupling
 # Name: Naomi Campbell, u/n: itsnaomi, email: naomi@test.com, password: myface
 # Name: Cate Blanchett, u/n: meredithlogue, email: cate@email.au, p/w ilovetherese 
+# Name: Spam Troll, u/n: trollio, emial: troll@troll.info, p/w 123123
 
 Body.create(name: "Body")
 Body.create(name: "Eyes")

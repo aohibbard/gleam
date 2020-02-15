@@ -1,26 +1,27 @@
-<div>
-Welcome <%= current_user.name %><br>
-<%= @user.name %>'s page
+<div class="media">
+    <div class="media-body">
+        <%= @user.name %><br>
+        <%= link_to "Following:", user_following_path(@user) %>  <%= @user.followings.size %><br>
+        <%= link_to "Followers:", user_follower_path(@user) %> <%= @user.followers.size %>
+        <%= render 'follows/follow-btn', {object: @user } %>
+
+    </div>
 </div>
 
-Following: <%= @user.followings.count %>
-Followers: <%= @user.followers.size %>
 
-<div>
-<%= render 'follows/follow-btn', {object: @user } %>
-</div>
-
-<div>
-<% @user.products.each do |product| %>
-    <ul>
-        <li><b><%= link_to product.name, product_path(product) %></b> by 
-        <%= link_to product.manufacturer.name, manufacturer_path(product.manufacturer_id) %><br></li>
-        <%= product.category.name %><br>
-        <%= number_to_currency(product.price) %></li>
-    </ul>
-    <br>
+<br><%= link_to "Add Product", new_product_path %>   
+        <div class="product-row>
+        <div class="product-column"> 
+        <% @user.products.each do |product| %>
+            <ul>
+                <li><b><%= link_to product.name, product_path(product) %></b> by 
+                <%= link_to product.manufacturer.name, manufacturer_path(product.manufacturer_id) %><br></li>
+                <%= product.category.name %><br>
+                <%= number_to_currency(product.price) %></li>
+            </ul>
+            <br>
+        </div>
+    </div>
     <% end %>
-</div>
 
-<br><%= link_to "Add Product", new_product_path %>    
 <%= render 'sessions/logout' %>

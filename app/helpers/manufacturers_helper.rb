@@ -4,7 +4,7 @@ module ManufacturersHelper
             if product.reviews.empty?
                 "No Ratings"
             else 
-                product.avg_rating
+                product.avg_rating.round(2)
             end 
         end 
     end 

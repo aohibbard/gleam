@@ -11,12 +11,13 @@ class User < ApplicationRecord
     # user.followers & user.followings
     
     validates :name, presence: true
-    validates :email, uniqueness: true 
-    # validates :username, presence: true, uniqueness: true #, length: { in: 5..15}, confirmation: true, unless: -> { password.blank? }, message: "Username must be between 5-15 charaacters"
+    validates :email, presence: true, uniqueness: true 
+    validates :username, presence: true, uniqueness: true
+    #, length: { in: 5..15}, confirmation: true, unless: -> { password.blank? }, message: "Username must be between 5-15 charaacters"
     # validates :password, length: { minimum: 6}, message: "Password must include at least 6 charactrs"
 
 
-    # refactor from controller
+    # NEED TO refactor from controller
     def following?(other_user)
         followings.include?(other_user)
     end

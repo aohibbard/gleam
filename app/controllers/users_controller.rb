@@ -1,8 +1,5 @@
 class UsersController < ApplicationController
     before_action :require_log_in, only: [:show]
-    #   skip_before_action :require_login, only: [:index]
-    # refer to application helper
-
 
     def new
         if logged_in?
@@ -17,13 +14,12 @@ class UsersController < ApplicationController
 
     def create
         @user = User.create(user_params)
-        if @user.save
+        if @user.valid?
+            @user.save
             session[:user_id] = @user.id
-            flash[:notice] = "Welcome #{@user.username}"
             redirect_to user_path(@user)
         else
-            flash[:notice] = "There was an error with your inputs."
-            redirect_to :new
+            render :new
         end
     end 
 
