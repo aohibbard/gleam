@@ -18,9 +18,5 @@ class Product < ApplicationRecord
     end 
   end 
 
-  # def ewg_api
-  #   BASE_URI = "https://www.ewg.org/skindeep"
-  #   Sephora?
-  # end 
 
 end

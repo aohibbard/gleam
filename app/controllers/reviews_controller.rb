@@ -1,4 +1,6 @@
 class ReviewsController < ApplicationController
+    before_action :require_log_in
+    before_action :edit_review, only: [:edit, :update]
 
     def new
         params[:product_id] && @product = Product.find_by_id(params[:product_id])
@@ -30,7 +32,8 @@ class ReviewsController < ApplicationController
 
     def edit
         @product = Product.find_by(id: params[:id])
-        @review = Review.find_by(user_id: current_user.id, product_id: params[:id])
+        # @review = Review.find_by(user_id: current_user.id, product_id: params[:id])
+        @review = Review.find_by(product_id: params[:id])
     end 
 
     def update
@@ -59,5 +62,14 @@ class ReviewsController < ApplicationController
             :product_id, :rating, :comment, :user_id 
             )
     end 
+
+    def edit_review
+        # !Review.find_by(user_id: current_user.id, product_id: params[:product_id])
+        @review = Review.find_by_id(params[:id])
+        if @review.user_id != current_user.id 
+            redirect_to product_path(@review.product_id)
+        end 
+    end 
+
 
 end

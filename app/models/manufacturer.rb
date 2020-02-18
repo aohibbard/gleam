@@ -9,9 +9,11 @@ class Manufacturer < ApplicationRecord
             if manufacturer
                 self.where(id: manufacturer)
             else
+                # if nothing is found
                 Manufacturer.all.sort_by {|m| m.name}
             end 
         else 
+            # if search is blank
             Manufacturer.all.sort_by {|m| m.name}
         end 
     end

@@ -9,9 +9,7 @@ class Review < ApplicationRecord
 
       # user.where(proudct, best review)
 
-  # scope :most_recent, ->(product_id) {where.(product_id).order("created_at desc").limit(2)}
   scope :best, ->(product_id) {where("rating > ?", 7.5).limit(1)}
   
-  # validations : text is between 10 - 500 words, presence: true
 
 end
