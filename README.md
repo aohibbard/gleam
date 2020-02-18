@@ -1,28 +1,3 @@
-# README
-
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
 # Gleam
 
 Gleam is  Ruby on Rails application built as a project for the Flatiron School. The application allows users to login and and manage skincare routines, add and review products, see other users' products, and follow other users.
@@ -33,7 +8,7 @@ To run the project locally, clone the repository, run 'bundle install', and type
 
 ### Prerequisites
 
-The project requires an internet connection. It is built with Ruby on Rails and uses the Omniauth and Omniauth-google-oauth2 gems to manage third-party log-ins through Google.
+The project requires an internet connection. It is built with Ruby on Rails and uses the Omniauth and Omniauth-google-oauth2 gems to manage third-party log-ins through Google. The database uses PostgresQL. If database migrations are pending, this can be handled through runnings 'rails db:migrate'.
 
 ## Built With
 
