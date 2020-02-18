@@ -29,13 +29,13 @@ class ReviewsController < ApplicationController
     end 
 
     def edit
-        @product = Product.find_by(id: params[:product_id])
-        @review = Review.find_by(id: params[:id])
+        @product = Product.find_by(id: params[:id])
+        @review = Review.find_by(user_id: current_user.id, product_id: params[:id])
     end 
 
     def update
-        @product = Product.find_by(id: params[:product_id])
-        @review = Review.find_by(id: params[:id])
+        @product = Product.find_by_id(params[:product_id])
+        @review = Review.find_by_id(params[:id])
         @review.update(review_params)
         if @review.save
             redirect_to product_path(@review.product_id)
@@ -43,6 +43,13 @@ class ReviewsController < ApplicationController
             # error msg
             render :edit 
         end 
+    end 
+
+    def destroy
+        @review = Review.find_by_id(params[:id])
+        @product = Product.find_by(id: @review.product_id)
+        @review.destroy
+        redirect_to product_path(@product)
     end 
 
     private

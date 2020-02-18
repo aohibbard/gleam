@@ -9,6 +9,7 @@ class ProductsController < ApplicationController
             @product = Product.new
             @product.build_manufacturer #create empty manufacturer
             @product.category.try(:id)
+
         end 
     end 
 
@@ -28,7 +29,6 @@ class ProductsController < ApplicationController
                 # binding.pry
                 redirect_to product_path(@product)
             else 
-                # render error message
                 redirect_to new_product_path
             end 
         end 
@@ -39,21 +39,27 @@ class ProductsController < ApplicationController
         # @reviews = Review.most_recent(@product.id)
     end 
 
-    def edit 
+    def edit
         product_helper
     end 
 
     def update 
         product_helper
         @product.update(product_params)
-        redirect_to @product 
+        if @product.save 
+            redirect_to product_path(@product )
+        else 
+            render :edit 
+        end 
     end 
 
     private 
 
     def product_params
         params.require(:product).permit(:name, :price, :category,
-        :body_part, :manufacturer_id, manufacturer_attributes: [:name])
+        :body_part,
+        mmanufacturer_attributes: [:id, :name]
+        )
     end 
 
     def product_helper

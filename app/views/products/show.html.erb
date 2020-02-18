@@ -1,8 +1,25 @@
-<%= @product.name %> by <%= link_to @product.manufacturer.name, manufacturer_path(@product.manufacturer) %><br>
-Average Rating: <%= @product.avg_rating %><br>
+<div class="media">
+    <div class="media-body">
+    <%= @product.name %> by <%= link_to @product.manufacturer.name, manufacturer_path(@product.manufacturer) %><br>
+    Average Rating: <%= @product.avg_rating %><br>
+    </div>
+</div>
 
-</br>
-<br>
+
+
+<div class="media">
+    <div class="media-body">
+    <% if logged_in? %>
+        <% if !@product.reviews.find_by(user_id: current_user.id) %>
+        <%= link_to "Add Review", new_product_review_path(@product) %> ||
+        <%= link_to "Edit Product", edit_product_path(@product) %><br>
+    <% else %>
+        <%= link_to "Edit Product", edit_product_path(@product) %> || 
+        <%= link_to "Edit My Review", edit_product_review_path(@product) %>
+    <% end %>
+<% end %>
+</div>
+</div>
 
 <% if @product.reviews %>
 <% @product.reviews.each do |r| %>
@@ -25,10 +42,4 @@ Average Rating: <%= @product.avg_rating %><br>
 
 
 
-<% if !@product.reviews.find_by(user_id: current_user.id) %>
-    <%= link_to "Add Review", new_product_review_path(@product) %> ||
-    <%= link_to "Edit Product", edit_product_path(@product) %><br>
-<% else %>
-    <%= link_to "Edit Product", edit_product_path(@product) %> || 
-    <%= link_to "Edit My Review", edit_product_review_path(@product) %>
-<% end %>
+

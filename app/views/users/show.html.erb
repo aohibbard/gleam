@@ -8,10 +8,11 @@
     </div>
 </div>
 
+<div class="media">
+    <div class="media-body">
 
-<br><%= link_to "Add Product", new_product_path %>   
-        <div class="product-row>
-        <div class="product-column"> 
+        <h3>My Products</h3>
+
         <% @user.products.each do |product| %>
             <ul>
                 <li><b><%= link_to product.name, product_path(product) %></b> by 
@@ -20,8 +21,7 @@
                 <%= number_to_currency(product.price) %></li>
             </ul>
             <br>
-        </div>
-    </div>
     <% end %>
 
-<%= render 'sessions/logout' %>
+    </div>
+</div>

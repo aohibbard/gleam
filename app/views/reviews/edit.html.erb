@@ -1,7 +1,4 @@
-<%= render partial: 'layouts/errors', locals: {object: @review } %>
-
-
-<div id="formContent">
+<div id="formContent"
 <h4>Update Review for <%=@product.name %></h4>
     <%= form_with(model: @review, url: [@product, @review], local: true) do |f| %>
         <%= f.hidden_field :user_id, value: current_user.id %>
@@ -15,3 +12,5 @@
         <%= f.submit "Update Review" %>
     </div>
 <% end %>
+
+<h4><%= button_to "Delete Review", delete_review_path(@review), data: { confirm: 'Are you sure?' } %></h4>
