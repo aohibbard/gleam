@@ -14,7 +14,8 @@ module Gleam
     config.load_defaults 6.0
 
     # added to April 29, 2020 to attempt successful heroku push
-    config.assets.initialize_on_precompile = false
+    # try to comment out config.load_defaults and then only this next time
+    # config.assets.initialize_on_precompile = false
 
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration can go into files in config/initializers
