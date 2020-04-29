@@ -6,6 +6,9 @@ require 'rails/all'
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
+# added to April 29, 2020 to attempt successful heroku push
+config.assets.initialize_on_precompile = false
+
 module Gleam
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
