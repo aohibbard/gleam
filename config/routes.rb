@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   end 
   resources :users, only: [:new, :create, :show]
 
-  get '/' to 'main#home'
+  # get '/' to 'main#home'
   get '/login', to: 'sessions#login'
   post '/login', to: 'sessions#create'
   post '/logout', to: 'sessions#destroy'
