@@ -9,17 +9,13 @@ class ReviewsController < ApplicationController
     end 
 
     def create 
-        # binding.pry
-        # binding.pry
+
         params[:product_id] && @product = Product.find_by_id(params[:product_id])
         @review = Review.create(review_params)
-        # binding.pry
 
         if @review.save 
-            # @review.update(user_ids: current_user.id)
             redirect_to product_path(@review.product_id)
         else 
-            # error msg
             render :new
         end 
     end 
@@ -32,7 +28,6 @@ class ReviewsController < ApplicationController
 
     def edit
         @product = Product.find_by(id: params[:id])
-        # @review = Review.find_by(user_id: current_user.id, product_id: params[:id])
         @review = Review.find_by(product_id: params[:id])
     end 
 
@@ -43,7 +38,6 @@ class ReviewsController < ApplicationController
         if @review.save
             redirect_to product_path(@review.product_id)
         else 
-            # error msg
             render :edit 
         end 
     end 
@@ -64,7 +58,6 @@ class ReviewsController < ApplicationController
     end 
 
     def edit_review
-        # !Review.find_by(user_id: current_user.id, product_id: params[:product_id])
         @review = Review.find_by_id(params[:id])
         if @review.user_id != current_user.id 
             redirect_to product_path(@review.product_id)
